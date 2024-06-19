@@ -1,26 +1,23 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { decrement, increment, incrementAsync } from './Reducers/counterSlice'
-
+import { Link, Route, Routes } from 'react-router-dom'
+import Product from './componens/Product'
+import User from './componens/User'
+import Home from "./componens/Home"
 
 const App = () => {
-
-  const {value}=useSelector((state) =>state.counter)
-  const dispatch = useDispatch();
-
-
   return (
-    <div className='text-center font-bold w-[100vw] h-[50vh] bg-sky-100  '>
-     <h1>
-       Counter : {value}
-      </h1>
-      <div className='text-center flex gap-5 justify-center mt-5'>
-        <button onClick={()=> dispatch(increment())}  className='bg-blue-500 py-1 px-3 border-2 border-blue-400 rounded-md'> Increment </button>
-        <button onClick={()=> dispatch(decrement())} className='bg-green-500 py-1 px-3 border-2 border-green-400 rounded-md'> Decrement </button>
-        <button onClick={()=> dispatch(incrementAsync(5))} className='bg-red-500 py-1 px-3 border-2 border-red-400 rounded-md'> Increment by 5 </button>
-
-      </div>
-
+    <div className='w-full h-screen '>
+      <nav className='h-5 w-full bg-sky-100 p-5 justify-center flex gap-5 items-center '>
+        <Link to="/" >Home   </Link>
+        <Link to="/user" >User   </Link>
+        <Link to="/product" > Product   </Link>
+      </nav>
+      <hr className='text-slate-800 text-2xl border-5  mb-5' />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/user' element={<User />} />
+        <Route path='/product' element={<Product />} />
+      </Routes>
     </div>
   )
 }
